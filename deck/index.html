@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>קלוד קוד, מפגש 1 - פסג"ה בת ים, 24.11.2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ================= LOOK ================= */
+:root{
+  --g:#75B743; --gd:#5E9A28; --gdd:#3F6E1C; --gl:#9ED174; --gp:#EDF5E4; --gt:#F5FAF0;
+  --red:#AF242A; --ink:#4A4845; --muted:#7A7874; --line:#E2E7DB; --paper:#FFFFFF;
+}
+h1{font-weight:800;font-size:76px;line-height:1.08;color:var(--gdd)}
+h2{font-weight:800;font-size:46px;line-height:1.18;color:var(--gdd);margin-bottom:16px}
+p,li{font-size:26px;line-height:1.5;font-weight:400}
+.lead{font-size:34px;line-height:1.4;font-weight:300}
+.small{font-size:17px;color:var(--muted);line-height:1.45}
+.r{color:var(--red);font-weight:700}
+.g{color:var(--gd);font-weight:700}
+.en{direction:ltr;unicode-bidi:isolate;font-weight:500}
+.mono{font-family:Consolas,'Courier New',monospace;direction:ltr;unicode-bidi:isolate}
+.kick{font-size:18px;letter-spacing:2px;color:var(--gd);font-weight:700;margin-bottom:4px}
+
+.agenda{display:flex;gap:10px;margin-bottom:12px}
+.ag{font-size:16px;padding:4px 14px;border-radius:20px;background:var(--gp);color:var(--muted);font-weight:500;white-space:nowrap}
+.ag.on{background:var(--gd);color:#fff;font-weight:700}
+
+ul.dot{list-style:none}
+ul.dot li{position:relative;padding-right:30px;margin:10px 0}
+ul.dot li:before{content:"";position:absolute;right:4px;top:17px;width:11px;height:11px;border-radius:50%;background:var(--g)}
+ol.nums{list-style:none;counter-reset:n}
+ol.nums li{counter-increment:n;position:relative;padding-right:56px;margin:12px 0}
+ol.nums li:before{content:counter(n);position:absolute;right:0;top:3px;width:38px;height:38px;border-radius:50%;
+  background:var(--gd);color:#fff;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center}
+
+.cards{display:flex;gap:18px}
+.card{flex:1;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:16px 20px}
+.card h4{font-size:27px;font-weight:800;color:var(--gdd);margin-bottom:4px;line-height:1.3}
+.card p{font-size:23px;line-height:1.45}
+.big-cards .card h4{font-size:31px}
+.big-cards .card p{font-size:26px}
+.mid-cards .card h4{font-size:29px}
+.mid-cards .card p{font-size:24px}
+.big-table th{font-size:23px;padding:11px 16px}
+.big-table td{font-size:24px;padding:13px 16px}
+.card.red{border:2px solid var(--red)}
+.card.tint{background:var(--gt)}
+.badge{display:inline-block;background:var(--red);color:#fff;font-size:15px;font-weight:700;border-radius:14px;padding:1px 12px;vertical-align:middle}
+.prompt{background:var(--gt);border:1.5px solid var(--line);border-right:7px solid var(--g);border-radius:10px;padding:14px 20px;font-size:24px;line-height:1.5}
+.prompt .lb{display:block;font-size:15px;letter-spacing:2px;color:var(--gd);font-weight:700;margin-bottom:4px}
+.warnbox{background:#FBF1F1;border:1.5px solid #efd3d3;border-right:7px solid var(--red);border-radius:10px;padding:12px 20px;font-size:23px;line-height:1.45}
+.okline{color:var(--gdd);font-weight:700}
+.line-end{font-size:30px;font-weight:700;color:var(--ink);text-align:center;margin-top:14px}
+
+table{border-collapse:collapse;width:100%}
+th{background:var(--gd);color:#fff;font-weight:700;padding:9px 16px;text-align:right;font-size:21px}
+td{padding:8px 16px;border-bottom:1px solid var(--line);font-size:21px;vertical-align:top;line-height:1.4}
+tbody tr:nth-child(even) td{background:var(--gt)}
+tr.hl td{background:#FDF3D7 !important;font-weight:500}
+
+.shot{display:block;border-radius:10px;box-shadow:0 6px 22px rgba(0,0,0,.14);border:1px solid #d9d9d9;background:#fff}
+.cap{font-size:15px;color:var(--muted);text-align:center;margin-top:6px}
+.two{display:flex;gap:36px;flex:1;min-height:0;align-items:center}
+.two>.tx{flex:1.15;min-width:0}
+.two>.im{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+
+/* app mock windows (illustrations, built from Tom's real screenshots) */
+.win{background:#fff;border:1.5px solid #dadada;border-radius:14px;box-shadow:0 8px 26px rgba(0,0,0,.10);overflow:hidden;display:flex;flex-direction:column}
+.win .bar{background:#F4F4F2;border-bottom:1px solid #e6e6e6;padding:7px 14px;font-size:17px;color:#555;font-weight:700}
+.win .body{padding:12px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
+.bub{border-radius:14px;padding:9px 14px;font-size:19px;line-height:1.45}
+.bub.me{background:var(--gp);align-self:flex-start;max-width:92%}
+.bub.ai{background:#F6F6F4;align-self:flex-end;max-width:96%}
+.log{display:flex;flex-direction:column;gap:3px}
+.log div{font-size:19px}
+.log div:before{content:"\2713";color:var(--gd);font-weight:800;margin-left:8px}
+.illus{font-size:14px;color:var(--muted);text-align:center}
+
+/* bio rows (slide 2): each line appears together with its logos */
+.bio{display:grid;grid-template-columns:1fr 690px;gap:22px 28px;align-items:center;flex:1;align-content:center}
+.bio .b{position:relative;padding-right:30px;font-size:24px;line-height:1.45}
+.bio .b:before{content:"";position:absolute;right:4px;top:14px;width:11px;height:11px;border-radius:50%;background:var(--g)}
+.bio .wide{grid-column:1 / -1}
+.bio .logos{display:flex;align-items:center;justify-content:center;gap:14px}
+.bio .logos img{border-radius:6px}
+/* section opener (slide 8): big cards on white */
+.opener .card{padding:26px 24px}
+.opener .card h4{font-size:34px;margin:6px 0 12px}
+.opener .card p{font-size:27px;line-height:1.5}
+.opener .ico{width:62px;height:62px;margin-bottom:8px}
+/* separator (slide 8) */
+.slide.sep{background:var(--gl)}
+.slide.sep h2{color:#fff;font-size:66px;-webkit-text-stroke:1px #1F1E1C;paint-order:stroke fill;text-shadow:0 1px 3px rgba(0,0,0,.3)}
+.slide.sep li{color:#fff;font-size:31px;font-weight:500;-webkit-text-stroke:.6px #1F1E1C;paint-order:stroke fill;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.slide.sep ul.dot li:before{background:#fff;border:2px solid #1F1E1C}
+.logo-card{position:absolute;top:44px;left:72px;background:#fff;border-radius:12px;padding:10px 16px}
+.logo-card img{width:190px;display:block}
+
+/* screen map callouts (slide 13) */
+.mapwrap{position:relative;width:900px;flex:0 0 900px}
+.mapwrap img{width:900px;display:block}
+.dotn{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--red);color:#fff;
+  font-size:17px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px #fff}
+.legend{flex:1;list-style:none}
+.legend li{font-size:20px;line-height:1.3;margin:7px 0;display:flex;gap:10px;align-items:center}
+.legend li b{flex:0 0 28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-size:15px;display:flex;align-items:center;justify-content:center}
+
+/* diagram (slide 9) */
+.dg{display:grid;grid-template-columns:1fr 56px 1.25fr 56px 1fr;grid-template-rows:auto 46px auto;align-items:center;margin-top:6px}
+.node{background:#fff;border:2px solid var(--g);border-radius:14px;padding:12px 16px;text-align:center}
+.node.main{border-color:var(--gdd);background:var(--gt)}
+.node h4{font-size:24px;font-weight:800;color:var(--gdd);margin-bottom:2px}
+.node p{font-size:19px;line-height:1.4}
+.arr{font-size:40px;color:var(--gd);text-align:center;font-weight:800}
+.ico{width:46px;height:46px;display:block;margin:0 auto 4px}
+
+/* loop (slide 6) */
+.loop{position:relative;width:560px;height:430px;flex:0 0 560px}
+.loop .ring{position:absolute;left:105px;top:40px;width:350px;height:350px;border-radius:50%;border:5px dashed var(--gl)}
+.loop .ctr{position:absolute;left:190px;top:165px;width:180px;text-align:center;font-size:24px;font-weight:800;color:var(--gdd);line-height:1.3}
+.loop .st{position:absolute;width:190px;background:#fff;border:2.5px solid var(--gd);border-radius:30px;padding:8px 10px;text-align:center;font-size:22px;font-weight:700;color:var(--ink)}
+
+/* tools (slide 10) */
+.tools{display:flex;gap:14px}
+.tool{flex:1;text-align:center;background:var(--gt);border:1.5px solid var(--line);border-radius:12px;padding:16px 8px}
+.tool p{font-size:20px;line-height:1.35;font-weight:500}
+
+/* folders (slide 24) */
+.tree{font-size:21px;line-height:1.65;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 18px}
+.tree .fd:before{content:"";display:inline-block;width:20px;height:15px;background:#E9C46A;border-radius:2px 2px 3px 3px;margin-left:8px;vertical-align:-1px}
+.tree .fl{padding-right:28px;color:var(--muted)}
+.tree .fl2{padding-right:56px;color:var(--muted)}
+
+/* markdown panes (slide 26) */
+.pane{flex:1;border-radius:12px;padding:16px 20px;border:1.5px solid var(--line)}
+.pane.raw{background:#2E2D2A;color:#EDEDED;font-size:23px;line-height:1.7;white-space:pre-line}
+.pane.out h3{font-size:28px;color:var(--gdd);font-weight:800;margin-bottom:6px}
+.pane.out li{font-size:22px}
+
+/* exercise grid (slide 29) */
+.exg{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ex{background:#fff;border:1.5px solid var(--line);border-top:5px solid var(--g);border-radius:10px;padding:16px 16px;font-size:25px;font-weight:700;color:var(--ink);line-height:1.35;min-height:128px}
+.ex b{display:block;color:var(--gd);font-size:19px}
+.ex.own{border-top-color:var(--red)}
+
+/* break (slide 23) */
+.brk{font-size:96px;font-weight:800;color:var(--gdd);letter-spacing:2px}
+.brk-btn{font-family:inherit;font-size:24px;font-weight:700;color:#fff;background:var(--gd);border:0;border-radius:30px;padding:12px 34px;cursor:pointer}
+
+/* ================= MECHANICS (from the deck engine) ================= */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#2E2D2A;overflow:hidden;font-family:'Heebo',Arial,sans-serif}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+/* flex:0 0 1280px keeps the deck from shrinking on narrow windows */
+#deck{width:1280px;height:720px;flex:0 0 1280px;position:relative;transform-origin:center center;
+  overflow:hidden;background:var(--paper);box-shadow:0 24px 80px rgba(0,0,0,.55)}
+.slide{position:absolute;inset:0;padding:44px 72px;display:none;flex-direction:column;
+  background:var(--paper);color:var(--ink);overflow:hidden}
+.slide.on{display:flex}
+.slide.tight{padding:30px 60px}
+.mid{justify-content:center;text-align:center;align-items:center}
+.fill{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center}
+.f{opacity:0;transform:translateY(9px);transition:opacity .3s ease,transform .3s ease}
+.f.vis{opacity:1;transform:none}
+[data-with]{opacity:0;transition:opacity .3s ease}
+[data-with].vis{opacity:1}
+#bar{position:fixed;bottom:0;right:0;height:4px;background:var(--g);transition:width .25s ease;z-index:9}
+#num{position:fixed;bottom:14px;left:20px;color:#8d8b86;font-size:13px;letter-spacing:1px;z-index:9}
+#help{position:fixed;bottom:14px;right:20px;color:#75736e;font-size:12px;z-index:9}
+
+/* ================= PISGA BAT YAM, SESSION 1 ================= */
+.road{display:flex;gap:14px;align-items:stretch}
+.stop{flex:1;background:#fff;border:1.5px solid var(--line);border-top:7px solid var(--g);border-radius:12px;padding:16px 18px;min-height:190px}
+.stop.now{border-top-color:var(--red);background:var(--gt)}
+.stop .d{font-size:20px;font-weight:800;color:var(--red)}
+.stop h4{font-size:28px;font-weight:800;color:var(--gdd);margin:2px 0 6px;line-height:1.25}
+.stop p{font-size:22px;line-height:1.4}
+.mapbox{display:flex;gap:28px;flex:1;min-height:0;align-items:center}
+.app{direction:ltr;flex:0 0 700px;height:450px;border:2px solid #cfcac2;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.08);font-family:'Segoe UI',Arial,sans-serif}
+.app .top{display:flex;gap:6px;align-items:center;padding:8px 12px;background:#F4F3F0;border-bottom:1px solid #e4e1db;font-size:15px}
+.app .tab{padding:3px 12px;border-radius:14px;color:#666}
+.app .tab.on{background:#fff;border:1.5px solid #cfcac2;color:#222;font-weight:700}
+.app .row{flex:1;display:flex;min-height:0}
+.app .side{flex:0 0 190px;background:#F7F6F3;border-right:1px solid #e4e1db;padding:12px 10px;display:flex;flex-direction:column;gap:7px;font-size:15px}
+.app .side .it{background:#fff;border-radius:8px;padding:5px 9px;display:flex;align-items:center;gap:6px}
+.app .side .ln{height:8px;border-radius:4px;background:#e4e1db;margin:3px 8px}
+.app .main{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
+.app .hello{flex:1;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:22px}
+.app .box{border:2px solid #cfcac2;border-radius:18px;padding:10px 14px;color:#999;font-size:15px}
+.app .under{display:flex;align-items:center;gap:5px;margin-top:8px;font-size:12.5px;color:#444}
+.app .chip{border:1.5px solid #cfcac2;border-radius:12px;padding:2px 7px;background:#fff;white-space:nowrap}
+.app .sp{flex:1}
+.app .pl{width:28px;height:28px;border-radius:50%;border:1.5px solid #bbb;display:inline-grid;place-items:center;font-size:19px;color:#333}
+.bd{display:inline-grid;place-items:center;flex:none;width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-size:13px;font-weight:800;line-height:1;direction:rtl}
+.lg{flex:1;list-style:none}
+.lg li{font-size:21px;line-height:1.3;margin:8px 0;display:flex;gap:10px;align-items:center}
+.lg li .bd{width:30px;height:30px;font-size:15px}
+.chainx{display:flex;gap:12px;align-items:stretch}
+.chainx .lk{flex:1;background:var(--gt);border:1.5px solid var(--line);border-radius:12px;padding:16px 16px;min-height:170px}
+.chainx .lk b{display:block;font-size:19px;color:var(--gd);letter-spacing:1px;margin-bottom:4px}
+.chainx .lk p{font-size:23px;line-height:1.4}
+.chainx .ar{align-self:center;font-size:32px;color:var(--g);font-weight:800}
+.mem{display:flex;gap:18px;align-items:stretch}
+.mem .card{padding:20px 22px}
+.mem .card .k{font-size:18px;font-weight:800;color:var(--red);letter-spacing:1px}
+.c-goal{color:#2E7D32;font-weight:700} .c-ctx{color:#1F4E8C;font-weight:700} .c-lim{color:var(--red);font-weight:700} .c-done{color:#7A4A95;font-weight:700}
+.tagrow{display:flex;gap:12px;margin-bottom:12px}
+.tagrow span{font-size:20px;font-weight:800;border-radius:20px;padding:4px 16px;color:#fff}
+.qrside{flex:0 0 250px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.qrside img{width:230px;border:1.5px solid var(--line);border-radius:12px;padding:8px;background:#fff}
+.qrside .u{direction:ltr;font-size:14px;color:var(--muted);text-align:center;line-height:1.3}
+.qrside .w{background:var(--gd);color:#fff;border-radius:10px;padding:6px 14px;font-size:22px;font-weight:800;text-align:center;width:100%}
+.browser{flex:0 0 620px;border:2px solid #cfcac2;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.browser .url{direction:ltr;background:#F4F3F0;border-bottom:1px solid #e4e1db;padding:10px 16px;font-size:18px;color:#555;font-family:Consolas,monospace}
+.browser .pg{padding:16px 20px}
+.browser h5{font-size:30px;color:var(--gdd);font-weight:800;margin-bottom:8px}
+.browser table td{font-size:21px;padding:9px 12px}
+.browser .st{display:inline-block;border-radius:10px;padding:1px 10px;font-size:18px;font-weight:700}
+.st.a{background:#E8F5E0;color:#2E7D32} .st.b{background:#FFF5D6;color:#8A6100} .st.c{background:#E6EEF8;color:#1F4E8C}
+</style>
+</head>
+<body>
+<div id="stage"><div id="deck">
+
+<!-- 1 שער -->
+<section class="slide">
+  <div class="two" style="gap:50px">
+    <div class="tx">
+      <p class="kick">סדנה לצוות ההדרכה, פסג"ה בת ים</p>
+      <h1>קלוד קוד,<br>מפגש 1</h1>
+      <p class="lead" style="margin-top:18px">להכיר את הכלי, <span class="r">ולבנות כלי ראשון</span></p>
+      <p style="margin-top:34px;font-size:24px">תום הגלעדי &middot; <span style="color:var(--muted)">יום שלישי, 24.11.2026 &middot; מפגש 1 מתוך 4</span></p>
+    </div>
+    <div class="im"><img src="assets/logo.png" alt="הלוגו של תום הגלעדי" style="width:440px"></div>
+  </div>
+</section>
+
+<!-- 2 קצת עליי -->
+<section class="slide">
+  <h2>קצת עליי</h2>
+  <div class="bio">
+    <p class="b f" id="b1">איש חינוך עשרים שנה: מורה, מייסד ומנהל בית הספר "שורשים", סגן מנהל מרכז פסג"ה תל אביב-יפו, ואחראי הפן החברתי-רגשי במדעני העתיד.</p>
+    <div class="logos" data-with="b1">
+      <img src="assets/bio-shorashim.webp" alt="בית הספר שורשים" style="height:145px">
+      <img src="assets/bio-pisga.png" alt="מרכז פסגה תל אביב-יפו" style="height:135px">
+      <img src="assets/bio-madaney.jpg" alt="מדעני העתיד" style="height:150px">
+    </div>
+    <p class="b f wide">מאז 2023 עוסק רק בממשק שבין בינה מלאכותית לארגונים לומדים: חינוך, אקדמיה, ועסקים שעובדים עם <span class="r">סוכנים</span>.</p>
+    <p class="b f" id="b3">מגיש את הפודקאסט "דיבורי בינה", מנהל את קהילת "בינה מלאכותית בחינוך ובאקדמיה" (כ-40 אלף חברים), וכתב עם פרופ' אמנון גלסנר את הספר "אהבת למידה וחדוות גילוי".</p>
+    <div class="logos" data-with="b3">
+      <img src="assets/bio-podcast.jpg" alt="הפודקאסט דיבורי בינה" style="height:170px">
+      <img src="assets/bio-community-fb.jpg" alt="קבוצת הפייסבוק בינה מלאכותית בחינוך ובאקדמיה" style="height:160px">
+      <img src="assets/bio-book.png" alt="הספר אהבת למידה וחדוות גילוי" style="height:195px">
+    </div>
+    <p class="b f wide"><b>ובבת ים:</b> ארבעה מפגשים, <span class="r">וכל זוג יוצא עם כלי משלו.</span></p>
+  </div>
+</section>
+
+<!-- 3 בדיקת מוכנות -->
+<section class="slide">
+  <div class="agenda"><span class="ag on">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>לפני הכול: כל אחת מראה תשובה ראשונה</h2>
+  <ol class="nums">
+    <li class="f" style="font-size:23px;margin:7px 0">פתחו את אפליקציית קלוד, ולחצו על <span class="en">Code</span>. לידה יכול להופיע <span class="en">Claude</span>, או <span class="en">Chat</span> ו-<span class="en">Cowork</span>. זה תלוי בחשבון, ושתי הצורות תקינות.</li>
+    <li class="f" style="font-size:23px;margin:7px 0">הורידו את ערכת התרגול מהדף (הברקוד), וחלצו אותה לשולחן העבודה.</li>
+    <li class="f" style="font-size:23px;margin:7px 0">סשן חדש, ובחרו את תיקיית הערכה.</li>
+    <li class="f" style="font-size:23px;margin:7px 0">כתבו: <b>"שלום, מה יש בתיקייה הזו?"</b> - וכשמופיעה תשובה, <span class="r">הרימו יד.</span></li>
+  </ol>
+  <div style="display:flex;gap:22px;margin-top:10px;align-items:center">
+    <div class="warnbox f" style="flex:1;font-size:23px;padding:18px 22px"><b>לא עובד?</b> אין <span class="en">Code</span>, או מופיע "שדרוג" - המנוי לא פעיל, או שנכנסתן עם חשבון אחר. מבקש קוד במייל - זו הכניסה הרגילה. לא מוצאות את התיקייה - נוריד יחד.</div>
+    <div class="qrside f"><img src="assets/qr-guide.png" alt="ברקוד לדף ההנחיות לתרגול"><div class="w">הדף והערכה</div></div>
+  </div>
+</section>
+
+<!-- 4 ארבעה מפגשים -->
+<section class="slide">
+  <div class="agenda"><span class="ag on">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>ארבעה מפגשים, נסיעה אחת</h2>
+  <div class="road" style="margin-top:8px">
+    <div class="stop now f"><span class="d">היום &middot; 24.11</span><h4>מכירות את הכלי</h4><p>את התיקייה, את השליטה, ובונות כלי ראשון.</p></div>
+    <div class="stop f" style="flex:2.2"><span class="d">1.12 &middot; 29.12 &middot; 11.1</span><h4>האפליקציה שלכן</h4><p>כל זוג בונה את האפליקציה שלו, לכאב מנהלתי אמיתי.</p></div>
+  </div>
+  <p class="line-end f" style="font-size:36px;margin-top:34px">שיעור נהיגה: <span class="r">אני מלמד לנהוג.</span> כל אחת קובעת לאן.</p>
+</section>
+
+<!-- 5 צ'אט מסביר, סוכן עושה -->
+<section class="slide">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag on">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>צ'אט מסביר, סוכן עושה</h2>
+  <div class="cards" style="align-items:stretch">
+    <div class="f" style="flex:1;display:flex;flex-direction:column;gap:4px">
+      <div class="win" style="flex:1">
+        <div class="bar">צ'אט</div>
+        <div class="body">
+          <div class="bub me">סדר את הקבצים בתיקייה הזו לפי נושא, ותן לכל קובץ שם ברור.</div>
+          <div class="bub ai">בשמחה! כך עושים את זה: פתח את התיקייה, צור תיקייה לכל נושא, גרור כל קובץ למקום, ושנה שמות לפי התוכן. אם תדביק כאן את רשימת הקבצים, אציע שמות.</div>
+        </div>
+      </div>
+      <div class="illus">המחשה</div>
+    </div>
+    <div class="f" style="flex:1;display:flex;flex-direction:column;gap:4px">
+      <div class="win" style="flex:1;border-color:var(--g)">
+        <div class="bar" style="background:var(--gp)">סוכן</div>
+        <div class="body">
+          <div class="bub me">סדר את הקבצים בתיקייה הזו לפי נושא, ותן לכל קובץ שם ברור.</div>
+          <div class="log">
+            <div>קראתי 15 קבצים</div>
+            <div>הצעתי 4 תיקיות לפי נושא</div>
+            <div>יצרתי את התיקיות והעברתי את הקבצים</div>
+            <div>נתתי לכל קובץ שם ברור</div>
+            <div>שמרתי קובץ "מה עשיתי"</div>
+          </div>
+        </div>
+      </div>
+      <div class="illus">המחשה</div>
+    </div>
+  </div>
+  <p class="line-end f">ההבדל הוא בין מישהו שמסביר לכן איך לעשות משהו, לבין מישהו <span class="r">שיושב ועושה</span> אותו מולכן.</p>
+</section>
+
+<!-- 9 איך קלוד קוד בנוי -->
+<section class="slide">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag on">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>איך קלוד קוד בנוי</h2>
+  <div class="dg">
+    <div class="node f" style="grid-column:1;grid-row:1">
+      <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#5E9A28" stroke-width="3"><circle cx="24" cy="15" r="8"/><path d="M8 42c2-9 8-13 16-13s14 4 16 13"/></svg>
+      <h4>את</h4><p>נותנים משימה במילים</p>
+    </div>
+    <div class="node f" style="grid-column:5;grid-row:1">
+      <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#5E9A28" stroke-width="3"><path d="M14 36h22a8 8 0 0 0 0-16 11 11 0 0 0-21-2 9 9 0 0 0-1 18z"/></svg>
+      <h4>המודל, "המוח"</h4><p>בשרתים של אנתרופיק. חושב ומחליט מה לעשות</p>
+    </div>
+    <div class="node main f" style="grid-column:3;grid-row:1;position:relative">
+      <span class="arr" style="position:absolute;right:-50px;top:38%">&larr;</span>
+      <span class="arr" style="position:absolute;left:-52px;top:38%">&#8644;</span>
+      <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#3F6E1C" stroke-width="3"><rect x="6" y="9" width="36" height="30" rx="4"/><path d="M6 17h36M13 26l5 4-5 4M22 34h10"/></svg>
+      <h4>המעטפת, "הידיים"</h4><p>קלוד קוד עצמו: נותן למודל כלים, שומר על ההרשאות ומנהל את הזיכרון של השיחה</p>
+      <p class="small en">agentic harness</p>
+    </div>
+    <div class="f" style="grid-column:3;grid-row:2;text-align:center"><span class="arr">&#8645;</span></div>
+    <div class="node f" style="grid-column:2 / span 2;grid-row:3">
+      <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#5E9A28" stroke-width="3"><path d="M5 13h14l4 5h20v20H5z"/></svg>
+      <h4>התיקייה במחשב</h4><p>הקבצים שהוא קורא ועורך, והפקודות שהוא מריץ</p>
+    </div>
+    <div class="node f" style="grid-column:4 / span 2;grid-row:3">
+      <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#5E9A28" stroke-width="3"><path d="M12 5h17l8 8v30H12z"/><path d="M18 21h13M18 28h13M18 35h8"/></svg>
+      <h4>קבצי ההוראות</h4><p>מה שהוא קורא בתחילת כל שיחה</p>
+    </div>
+  </div>
+  <p class="line-end f" style="font-size:28px">המודל <span class="r">חושב</span>. המעטפת <span class="r">פועלת</span>. אתן <span class="r">מחליטות</span> מה מותר.</p>
+</section>
+
+<!-- 7 מפת המסך -->
+<section class="slide tight">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag on">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2 style="margin-bottom:6px">מפה של המסך</h2>
+  <p class="small" style="margin-bottom:10px">זו מפה, לא צילום. המסך משתנה מגרסה לגרסה ומחשבון לחשבון.</p>
+  <div class="mapbox">
+    <div class="app" aria-hidden="true">
+      <div class="top"><span class="bd f" data-step="1">1</span><span class="tab">Chat</span><span class="tab">Cowork</span><span class="tab on">Code</span></div>
+      <div class="row">
+        <div class="side">
+          <div class="it">+ New session <span class="bd f" data-step="2">2</span></div>
+          <div class="it">Scheduled</div>
+          <div class="it">Customize</div>
+          <div style="font-size:13px;color:#888;margin-top:4px">Sessions <span class="bd f" data-step="3">3</span></div>
+          <div class="ln"></div><div class="ln" style="margin-right:40px"></div><div class="ln"></div>
+        </div>
+        <div class="main">
+          <div class="hello">What should we build?</div>
+          <div class="box">Type a task... <span class="bd f" data-step="5">5</span>
+            <div class="under"><span class="pl">+</span><span class="chip">ערכת תרגול &#9662;</span><span class="bd f" data-step="4">4</span><span class="sp"></span><span class="chip">Opus 5.5 &middot; Medium</span><span class="bd f" data-step="6">6</span><span class="chip">Auto</span><span class="chip">&#9711;</span><span class="bd f" data-step="7">7</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="lg">
+      <li class="f" data-step="1"><span class="bd">1</span>הלשוניות. אנחנו ב-<span class="en">Code</span></li>
+      <li class="f" data-step="2"><span class="bd">2</span>סשן חדש</li>
+      <li class="f" data-step="3"><span class="bd">3</span>הסשנים שלכן</li>
+      <li class="f" data-step="4"><span class="bd">4</span>התיקייה שעובדים בה</li>
+      <li class="f" data-step="5"><span class="bd">5</span>תיבת הכתיבה, והפלוס לצירוף קבצים</li>
+      <li class="f" data-step="6"><span class="bd">6</span>המודל ורמת המאמץ</li>
+      <li class="f" data-step="7"><span class="bd">7</span>מצב ההרשאה, וטבעת השימוש</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8 סשן חדש ותיקייה -->
+<section class="slide">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag on">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>סשן חדש, ובחירת תיקייה</h2>
+  <div class="chainx" style="margin-top:10px">
+    <div class="lk f"><b>01</b><p><span class="en">New session</span>, או <span class="en">Ctrl+N</span></p></div>
+    <span class="ar">&larr;</span>
+    <div class="lk f"><b>02</b><p>בוחרים תיקייה. בפעם הראשונה קופץ חלון אישור</p></div>
+    <span class="ar">&larr;</span>
+    <div class="lk f"><b>03</b><p>סביבה: <span class="en">Local</span>. <span class="en">Worktree</span> לא מסומן</p></div>
+    <span class="ar">&larr;</span>
+    <div class="lk f"><b>04</b><p>כל סשן <span class="r">זוכר את התיקייה שלו</span></p></div>
+  </div>
+  <p class="line-end f" style="margin-top:34px">תיקייה אחת לכל נושא. <span class="r">עוד נחזור לזה.</span></p>
+</section>
+
+<!-- 9 מודל מאמץ ושימוש -->
+<section class="slide">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag on">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>מודל, מאמץ, וכמה נשאר</h2>
+  <div class="cards mid-cards" style="align-items:stretch;flex-wrap:wrap">
+    <div class="card f" style="flex:1 1 45%"><h4>המודל</h4><p><span class="en">Opus 5.5</span> - ברירת המחדל, וההמלצה. <span class="en">Fable 5.2</span> - בתשלום נוסף, גם במושב צוות.</p></div>
+    <div class="card f" style="flex:1 1 45%"><h4>המאמץ</h4><p><b>בינוני</b> - ברירת המחדל וההמלצה. גבוה יותר: יסודי יותר, איטי יותר, <span class="r">ושורף מכסה מהר יותר.</span></p></div>
+    <div class="card f" style="flex:1 1 45%"><h4>טבעת השימוש</h4><p>חלון של 5 שעות מההודעה הראשונה, ותקרה שבועית. במושב צוות: פי 1.25 ממנוי פרו בכל חלון.</p></div>
+    <div class="card f" style="flex:1 1 45%"><h4>מד ההקשר</h4><p>מתאפס בכל סשן חדש. כשהוא מתמלא, קלוד מסכם לבד וממשיך.</p></div>
+  </div>
+  <p class="line-end f">בסדנה: <span class="en">Opus 5.5</span>, מאמץ בינוני. <span class="r">לא נוגעות.</span></p>
+</section>
+
+<!-- 10 תרגול חימום -->
+<section class="slide">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag on">תרגול</span></div>
+  <p class="kick">תרגול 1 &middot; <span style="color:var(--red)">כ-10 דקות</span></p>
+  <h2>חימום: מה יש בתיקייה?</h2>
+  <div class="prompt f"><span class="lb">הדביקו</span>"עבור על התיקייה הזו ועל כל תיקיות המשנה שלה, והכן לי טבלה: שם הקובץ, מה יש בו בשורה אחת, ולמה הוא יכול לשמש. <span class="r">אל תשנה שום קובץ.</span>"</div>
+  <div class="prompt f" style="margin-top:12px"><span class="lb">ואז</span>"פתח את קובץ השיבוצים, וספר לי במשפט אחד מה יש בכל גיליון."</div>
+  <div class="cards" style="margin-top:16px">
+    <div class="card tint f"><h4 class="okline">הצלחתן אם</h4><p>מופיעה טבלה עם שורה לכל קובץ, ומשפט על כל אחד מחמשת בתי הספר.</p></div>
+    <div class="card f"><h4>סיימתן מוקדם?</h4><p>"איזה בית ספר הכי עמוס, ובאיזה יום?"</p></div>
+  </div>
+</section>
+
+<!-- 20 מצבי ההרשאה -->
+<section class="slide">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag on">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>מי מחליט: מצבי ההרשאה</h2>
+  <div class="two" style="align-items:flex-start">
+    <div class="tx">
+      <table>
+        <thead><tr><th style="width:36%">המצב</th><th>מה קורה</th></tr></thead>
+        <tbody>
+          <tr class="f">
+            <td class="en">Manual</td>
+            <td>שואל אתכן לפני כל שינוי בקובץ, ולפני כל פקודה.</td>
+          </tr>
+          <tr class="f" id="pm2">
+            <td class="en">Accept edits</td>
+            <td>יוצר, משנה, מעביר ומוחק קבצים בתוך התיקייה בלי לשאול. מחוץ לתיקייה, או לפני פקודה כמו התקנת תוכנה, הוא עוצר ושואל.</td>
+          </tr>
+          <tr class="f">
+            <td class="en">Plan</td>
+            <td>קורא ומתכנן. לא משנה כלום עד שמאשרים.</td>
+          </tr>
+          <tr class="f hl">
+            <td class="en">Auto</td>
+            <td>פועל לבד, עם בדיקות בטיחות ברקע. <span class="r">כאן מתחילה כל שיחה חדשה.</span></td>
+          </tr>
+          <tr class="f">
+            <td class="en">Bypass permissions</td>
+            <td>בלי שום שאלה. מוסתר כברירת מחדל, ולא נוגעים בו.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="small" data-with="pm2" style="margin-top:8px;font-size:19px">"פקודה" היא פעולה שקלוד מריץ במחשב עצמו, מעבר לכתיבה בתוך קובץ: למשל להעביר קבצים בין תיקיות, להתקין תוכנה או להריץ סקריפט.</p>
+    </div>
+    <div class="im" style="flex:0 0 360px;gap:16px">
+      <div class="prompt f" style="font-size:21px"><span class="lb">איך מחליפים</span>לחצו על המצב בשורה שמתחת לתיבה, או
+<span class="en">Ctrl+Shift+M</span>
+      </div>
+      <div class="prompt f" style="font-size:21px;border-right-color:var(--red)"><span class="lb" style="color:var(--red)">ההמלצה</span>התחילו משימה חדשה ב-
+<span class="en">Plan</span>
+        , קראו את התוכנית, ורק אז בצעו.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 21 עוצרים וחוזרים אחורה -->
+<section class="slide">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag on">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>עוצרים וחוזרים אחורה</h2>
+  <div class="cards big-cards" style="align-items:stretch;min-height:230px">
+    <div class="card f">
+      <h4>עצירה</h4>
+      <p>כפתור העצירה, או
+<span class="en">Esc</span>
+      </p>
+    </div>
+    <div class="card f">
+      <h4>תיקון כיוון</h4>
+      <p>בלי לעצור: כתבו הודעה ולחצו
+<span class="en">Enter</span>
+      </p>
+    </div>
+    <div class="card f" style="flex:1.5">
+      <h4>חזרה אחורה</h4>
+      <p>בתפריט של הודעה:
+<span class="en">Rewind to here</span>
+        . או
+<span class="en">Esc</span>
+        פעמיים כשהתיבה ריקה. בחרו מה להחזיר: את הקבצים, את השיחה או את שניהם.</p>
+    </div>
+  </div>
+  <div class="warnbox f" style="margin-top:24px;font-size:27px">
+    <b>מה לא חוזר:</b> קבצים ששונו רק בהרצת פקודה, כמו העברה בין תיקיות. וגם פעולות בחוץ, כמו מייל שנשלח.
+  </div>
+  <p class="small" style="margin-top:auto">מקור: עמוד נקודות השמירה בתיעוד של אנתרופיק, נבדק ב-23.11.2026.</p>
+</section>
+
+<!-- 13 מה הכלי רואה -->
+<section class="slide" style="justify-content:center">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag on">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>מה הכלי רואה, ומה יוצא החוצה</h2>
+  <ul class="dot">
+    <li class="f" style="font-size:27px">קלוד רואה את התיקייה שבחרתן, וכל מה שמתחתיה. יציאה ממנה דורשת אישור. <span class="r">התיקייה היא גבול, לא ארגז חול.</span></li>
+    <li class="f" style="font-size:27px">מה שקלוד קורא נשלח לאנתרופיק. הוא קורא לפי הצורך, לא את כל התיקייה בבת אחת.</li>
+  </ul>
+  <div class="cards big-cards" style="margin-top:16px;align-items:stretch;min-height:190px">
+    <div class="card tint f"><h4>אצלכן, בחשבון צוות</h4><p>המידע לא משמש לאימון המודלים, ונשמר 30 יום.</p></div>
+    <div class="card red f"><h4>ובכל זאת</h4><p>בלי פרטים מזהים של תלמידים ומורים, לפי הנחיות משרד החינוך. <b>ובלי סיסמאות בקבצים.</b></p></div>
+  </div>
+  <p class="small" style="margin-top:26px">מקור: עמוד השימוש בנתונים בתיעוד של אנתרופיק, נבדק ב-23.11.2026.</p>
+</section>
+
+<!-- 23 הפסקה -->
+<section class="slide mid">
+  <h2 style="font-size:56px">הפסקה של 10 דקות</h2>
+  <div class="brk" id="brkClock">10:00</div>
+  <p id="brkBack" data-prefix="חוזרים ב-" style="font-size:30px;min-height:46px;color:var(--ink)"></p>
+  <button type="button" class="brk-btn" id="brkBtn">התחלת ההפסקה</button>
+</section>
+
+<!-- 24 למה תיקיות מסודרות -->
+<section class="slide">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag on">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>תיקייה לכל נושא</h2>
+  <div class="two" style="align-items:flex-start">
+    <div class="tx">
+      <ul class="dot">
+        <li class="f" style="font-size:24px">קלוד רואה <span class="r">תיקייה אחת</span>: זו שבחרתן, וכל מה שמתחתיה.</li>
+        <li class="f" style="font-size:24px">צר וממוקד עדיף: תיקייה לכל פרויקט, ולא "כל המסמכים שלי".</li>
+        <li class="f" style="font-size:24px">שמות קבצים ברורים: הוא מוצא מהר יותר ומבין טוב יותר.</li>
+        <li class="f" style="font-size:24px">בתיקייה נשמרות גם ההוראות של הפרויקט. נראה בעוד רגע.</li>
+        <li class="f" style="font-size:24px">מעכשיו: תיקייה לכל פרויקט שלכן. "שיבוצים", "לוח חודשי".</li>
+      </ul>
+    </div>
+    <div class="im" style="flex-direction:row;align-items:flex-start;gap:14px">
+      <div style="flex:1">
+        <p class="small" style="text-align:center;color:var(--red);font-weight:700">כל המסמכים בתיקייה אחת</p>
+        <div class="tree">
+          <div class="fd">המסמכים שלי</div>
+          <div class="fl">סופי סופי 2</div>
+          <div class="fl">מסמך1</div>
+          <div class="fl">חדש (3)</div>
+          <div class="fl">ללא שם</div>
+          <div class="fl">...ועוד 400</div>
+        </div>
+      </div>
+      <div style="flex:1">
+        <p class="small" style="text-align:center;color:var(--gd);font-weight:700">תיקייה לכל פרויקט</p>
+        <div class="tree">
+          <div class="fd">שיבוצים</div>
+          <div class="fl">שיבוצים - דצמבר.xlsx</div>
+          <div class="fl">CLAUDE.md</div>
+          <div class="fd">לוח חודשי</div>
+          <div class="fl">לוח - דצמבר.docx</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 איך קלוד זוכר -->
+<section class="slide" style="justify-content:center">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag on">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>איך קלוד זוכר</h2>
+  <div class="mem cards big-cards" style="align-items:stretch;min-height:300px">
+    <div class="card f"><span class="k">ספר החוקים</span><h4 class="en" style="text-align:right">CLAUDE.md</h4><p>קובץ בתיקייה, שקלוד קורא בתחילת כל סשן. כותבים בו מי אתן, ומה הפרויקט. עד 200 שורות.</p></div>
+    <div class="card f"><span class="k">המחברת</span><h4>זיכרון אוטומטי</h4><p>"תזכור ש..." נכתב שם. דלוק כברירת מחדל, וקלוד מחליט מה לשמור.</p></div>
+    <div class="card f"><span class="k">השולחן</span><h4>השיחה עצמה</h4><p>נעלמת בסשן הבא. <span class="r">מה שחשוב - לספר החוקים.</span></p></div>
+  </div>
+  <p class="small" style="margin-top:26px">מקור: עמוד הזיכרון בתיעוד של אנתרופיק, נבדק ב-23.11.2026.</p>
+</section>
+
+<!-- 17 איך מבקשים מסוכן -->
+<section class="slide" style="justify-content:center">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag on">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>איך מבקשים מסוכן</h2>
+  <div class="tagrow f"><span style="background:#2E7D32">מטרה</span><span style="background:#1F4E8C">הקשר</span><span style="background:var(--red)">גבולות</span><span style="background:#7A4A95">מתי זה מוכן</span></div>
+  <div class="prompt f" style="font-size:25px;line-height:1.6"><span class="lb">דוגמה</span>"<span class="c-goal">אני רוצה דף נפרד לכל בית ספר, שמראה רק את השיבוצים שלו.</span> <span class="c-ctx">הקובץ: שיבוצים - דצמבר, גיליון לכל בית ספר. הדפים יגיעו למנהלות.</span> <span class="c-lim">אל תשנה את קובץ האקסל, ואל תמציא נתונים.</span> <span class="c-done">זה מוכן כשכל בית ספר רואה רק את שלו, ויש דף ראשי עם קישורים.</span> לפני שאתה מתחיל, שאל אותי שאלות."</div>
+  <ul class="dot" style="margin-top:12px">
+    <li class="f" style="font-size:24px">ובסוף: <span class="r">בדקו</span>. גם סוכן טועה, ובביטחון מלא.</li>
+  </ul>
+</section>
+
+<!-- 18 תהליך בחמישה צעדים -->
+<section class="slide" style="justify-content:center">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag on">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>תהליך בחמישה צעדים</h2>
+  <ol class="nums">
+    <li class="f" style="font-size:28px;margin:13px 0">מתחילות ב-<span class="en">Plan</span>: קלוד מתכנן, ולא נוגע בשום דבר.</li>
+    <li class="f" style="font-size:28px;margin:13px 0">קוראות את התוכנית, ומתקנות במילים.</li>
+    <li class="f" style="font-size:28px;margin:13px 0">מאשרות, וקלוד בונה.</li>
+    <li class="f" style="font-size:28px;margin:13px 0"><b>על דוגמה קטנה קודם:</b> <span class="r">שני בתי ספר, לא שלושים.</span></li>
+    <li class="f" style="font-size:28px;margin:13px 0">עובד? מרחיבות. ושומרות את מה שלמדנו בספר החוקים.</li>
+  </ol>
+</section>
+
+<!-- 19 תרגול כלי ראשון -->
+<section class="slide">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag on">תרגול</span></div>
+  <p class="kick">תרגול 2 &middot; בזוגות &middot; <span style="color:var(--red)">כ-25 דקות</span></p>
+  <h2 style="margin-bottom:10px">כלי ראשון: כל בית ספר רואה רק את שלו</h2>
+  <div style="display:flex;gap:26px;flex:1;min-height:0">
+    <div style="flex:1;min-width:0">
+      <ol class="nums">
+        <li class="f" style="font-size:22px;margin:7px 0">עברו ל-<span class="en">Plan</span>, והדביקו את הבקשה מהדף.</li>
+        <li class="f" style="font-size:22px;margin:7px 0">קראו את התוכנית, תקנו במילים, ואשרו.</li>
+        <li class="f" style="font-size:22px;margin:7px 0">פתחו את הדפים ובדקו: <b>בית ספר א' רואה רק את שלו?</b></li>
+        <li class="f" style="font-size:22px;margin:7px 0">בונוס: "הוסף לכל דף כפתור הדפסה, וצבע לפי סטטוס."</li>
+      </ol>
+      <div class="prompt f" style="font-size:20px;margin-top:8px"><span class="lb">הבקשה</span>"יש כאן קובץ שיבוצים של מדריכות בחמישה בתי ספר. אני רוצה דף נפרד לכל בית ספר, שמראה רק את השיבוצים שלו, ודף ראשי עם קישורים. אל תשנה את קובץ האקסל. קודם תכנן, ותראה לי."</div>
+      <p class="small f" style="margin-top:8px">סיימתן? חלופות בדף: לסדר תיקייה מבולגנת, או למצוא טעויות בטבלה.</p>
+    </div>
+    <div class="qrside f"><img src="assets/qr-guide.png" alt="ברקוד לדף ההנחיות לתרגול"><span class="u">tomhagiladi.github.io/<br>pisga-bat-yam-claude-code-24-11-26</span><div class="w">תרגול 2</div></div>
+  </div>
+</section>
+
+<!-- 20 תרגול שיעור נהיגה -->
+<section class="slide" style="justify-content:center">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag on">תרגול</span></div>
+  <p class="kick">תרגול 3 &middot; בזוגות &middot; <span style="color:var(--red)">כ-12 דקות</span></p>
+  <h2>לאן אתן נוסעות?</h2>
+  <p style="font-size:25px">כל זוג בוחר <span class="r">כאב מנהלתי אחד</span> לשלושת המפגשים הבאים. שלוש דוגמאות למטה.</p>
+  <div class="prompt f" style="margin-top:12px;font-size:23px"><span class="lb">בתיקייה "הפרויקט שלנו", הדביקו</span>"ראיין אותנו. שאל שאלה אחת בכל פעם על התהליך שאנחנו רוצות לשפר: מה עושים היום, מי משתמש בתוצר, ומה יהיה טוב. בסוף כתוב קובץ <span class="en">CLAUDE.md</span> בתיקייה הזו, שמתאר את הפרויקט שלנו."</div>
+  <div class="cards mid-cards" style="margin-top:14px;align-items:stretch">
+    <div class="card f"><h4>אקסל השיבוצים</h4><p>גיליונות לכל בית ספר, וכל בית ספר רואה רק את שלו.</p></div>
+    <div class="card f"><h4>הלוח החודשי</h4><p>מה שהיה בקנבה - לדף שמתעדכן, למנהלות ולמפקחות.</p></div>
+    <div class="card f"><h4>משהו אחר</h4><p>כל משימה שחוזרת כל חודש, ולוקחת לכן שעות.</p></div>
+  </div>
+  <p class="line-end f" style="font-size:28px">ככה מפגש 2 מתחיל עם קלוד <span class="r">שכבר מכיר את הפרויקט.</span></p>
+</section>
+
+<!-- 21 דף בקישור -->
+<section class="slide" style="justify-content:center">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag on">תרגול</span></div>
+  <h2>ולאן זה הולך: דף שמשתפים בקישור</h2>
+  <div style="display:flex;gap:34px;flex:1;min-height:0;align-items:center">
+    <div style="flex:1;min-width:0">
+      <ul class="dot">
+        <li class="f" style="font-size:26px">אותו דף שבניתן היום - <span class="r">בקישור</span>, למנהלת או למפקחת.</li>
+        <li class="f" style="font-size:26px">מתעדכן כשהנתונים משתנים, בלי לבנות אותו מחדש כל חודש.</li>
+        <li class="f" style="font-size:26px">את זה נבנה בשלושת המפגשים הבאים.</li>
+      </ul>
+    </div>
+    <div class="browser f" aria-hidden="true">
+      <div class="url">claude.ai/... (קישור לדף)</div>
+      <div class="pg">
+        <h5>שיבוצים - בית ספר ג'</h5>
+        <table><tbody>
+          <tr><td>שלישי 09:45</td><td>צוות מדעים</td><td><span class="st a">פעיל</span></td></tr>
+          <tr><td>רביעי 11:30</td><td>רכזות שכבה</td><td><span class="st b">בתכנון</span></td></tr>
+          <tr><td>חמישי 08:00</td><td>צוות שפה</td><td><span class="st c">הושלם</span></td></tr>
+        </tbody></table>
+      </div>
+    </div>
+  </div>
+  <p class="small">המחשה, עם נתונים בדויים.</p>
+</section>
+
+<!-- 22 מה לוקחות -->
+<section class="slide">
+  <h2>מה לוקחות, ומה עד 1.12</h2>
+  <div style="display:flex;gap:30px;flex:1;min-height:0;align-items:center">
+    <ol class="nums" style="flex:1.2">
+      <li class="f" style="font-size:29px;margin:13px 0">תיקייה אחת לכל נושא.</li>
+      <li class="f" style="font-size:29px;margin:13px 0">קודם <span class="en">Plan</span>, אחר כך ביצוע.</li>
+      <li class="f" style="font-size:29px;margin:13px 0">דוגמה קטנה קודם.</li>
+      <li class="f" style="font-size:29px;margin:13px 0"><span class="en">Esc</span> וחזרה אחורה - אבל לא על הכול.</li>
+      <li class="f" style="font-size:29px;margin:13px 0"><span class="r">בלי פרטים מזהים.</span></li>
+    </ol>
+    <div class="card red f" style="flex:1"><h4>עד 1.12</h4><p>הכינו את הקובץ האמיתי של הכאב שבחרתן. בלי שמות של תלמידים ומורים - אפשר להחליף שמות במספרים.</p><p style="margin-top:10px"><b>בפעם הבאה:</b> סקילים, מחברים, והאפליקציה שלכן.</p></div>
+  </div>
+</section>
+
+<!-- 33 תודה -->
+<section class="slide">
+  <div class="two" style="gap:60px">
+    <div class="tx" style="text-align:center">
+      <img src="assets/logo.png" alt="הלוגו של תום הגלעדי" style="width:380px">
+      <h1 style="margin-top:26px">תודה</h1>
+      <p class="lead" style="margin-top:8px">תום הגלעדי</p>
+    </div>
+    <div class="im"><img src="assets/qr-linktree.png" alt="ברקוד לדף הקישורים של תום הגלעדי" style="width:420px"></div>
+  </div>
+</section>
+
+</div></div>
+<div id="bar"></div><div id="num"></div>
+<div id="help">חץ שמאלה: קדימה &middot; חץ ימינה: אחורה &middot; מסך מלא:
+<span class="en">F</span>
+</div>
+
+<script>
+(function(){
+  const deck=document.getElementById('deck'), slides=[...deck.querySelectorAll('.slide')];
+  const bar=document.getElementById('bar'), num=document.getElementById('num');
+  let si=0, fi=0, lockHash=false;
+  function frags(){
+    const fs=[...slides[si].querySelectorAll('.f')];
+    if(!fs.some(f=>f.dataset.step)) return fs.map(f=>[f]);
+    const m=new Map(); fs.forEach(f=>{ const k=+(f.dataset.step||0); if(!m.has(k)) m.set(k,[]); m.get(k).push(f); });
+    return [...m.keys()].sort((a,b)=>a-b).map(k=>m.get(k));
+  }
+  function render(){
+    slides.forEach((s,i)=>s.classList.toggle('on', i===si));
+    frags().forEach((g,i)=>g.forEach(f=>f.classList.toggle('vis', i<fi)));
+    // elements that appear together with another fragment (map dots follow their legend line)
+    deck.querySelectorAll('[data-with]').forEach(el=>{
+      const t=document.getElementById(el.dataset.with);
+      el.classList.toggle('vis', !!t && t.classList.contains('vis'));
+    });
+    bar.style.width=((si+1)/slides.length*100)+'%';
+    num.textContent=(si+1)+' / '+slides.length;
+    lockHash=true; location.hash=(si+1); setTimeout(()=>{lockHash=false;},0);
+  }
+  function next(){ if(fi<frags().length){ fi++; } else if(si<slides.length-1){ si++; fi=0; } render(); }
+  function prev(){ if(fi>0){ fi--; } else if(si>0){ si--; fi=frags().length; } render(); }
+  function goto(n){ si=Math.max(0,Math.min(slides.length-1,n)); fi=frags().length; render(); }
+  // Hebrew deck reads right-to-left: LEFT = forward, RIGHT = back (Tom, 3.10.2026)
+  document.addEventListener('keydown', e=>{
+    switch(e.key){
+      case 'ArrowLeft': case 'PageDown': case ' ': case 'Enter': e.preventDefault(); next(); break;
+      case 'ArrowRight': case 'PageUp': case 'Backspace': e.preventDefault(); prev(); break;
+      case 'ArrowDown': e.preventDefault(); goto(si+1); break;
+      case 'ArrowUp': e.preventDefault(); goto(si-1); break;
+      case 'Home': e.preventDefault(); goto(0); break;
+      case 'End': e.preventDefault(); goto(slides.length-1); break;
+      case 'f': case 'F': document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); break;
+    }
+  });
+  deck.addEventListener('click', e=>{ if(e.target.closest('button')) return; next(); });
+  addEventListener('hashchange', ()=>{ if(lockHash) return; const n=parseInt(location.hash.slice(1)); if(n>=1&&n<=slides.length){ si=n-1; fi=0; render(); } });
+  function fit(){ deck.style.transform='scale('+Math.min(innerWidth/1280, innerHeight/720)+')'; }
+  addEventListener('resize', fit); fit();
+  const start=parseInt(location.hash.slice(1)); if(start>=1&&start<=slides.length){ si=start-1; }
+  render();
+
+  // break slide: 10-minute countdown; the button click never advances the slide
+  const btn=document.getElementById('brkBtn'), clock=document.getElementById('brkClock'), back=document.getElementById('brkBack');
+  let timer=null;
+  btn.addEventListener('click', e=>{
+    e.stopPropagation();
+    const end=Date.now()+10*60*1000, t=new Date(end);
+    back.textContent=back.dataset.prefix+String(t.getHours()).padStart(2,'0')+':'+String(t.getMinutes()).padStart(2,'0');
+    clearInterval(timer);
+    timer=setInterval(()=>{
+      const left=Math.max(0, Math.round((end-Date.now())/1000));
+      clock.textContent=String(Math.floor(left/60)).padStart(2,'0')+':'+String(left%60).padStart(2,'0');
+      if(!left) clearInterval(timer);
+    }, 250);
+  });
+})();
+</script>
+</body>
+</html>

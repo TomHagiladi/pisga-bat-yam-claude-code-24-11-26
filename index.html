@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>הנחיות לתרגול - קלוד קוד, פסג"ה בת ים</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g:#75B743; --gd:#5E9A28; --gdd:#3F6E1C; --gp:#EDF5E4; --gt:#F5FAF0;
+  --red:#AF242A; --ink:#3A3936; --muted:#5F5D59; --line:#E2E7DB;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Heebo',Arial,sans-serif;color:var(--ink);background:#fff;font-size:21px;line-height:1.7}
+.skip-link{position:absolute;top:-100%;right:0;background:var(--gdd);color:#fff;padding:.75rem 1.5rem;font-weight:700;z-index:200;text-decoration:none}
+.skip-link:focus{top:0;outline:3px solid #f59e0b;outline-offset:2px}
+a:focus-visible,button:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid #f59e0b;outline-offset:3px;border-radius:4px}
+.wrap{max-width:1500px;margin:0 auto;padding:0 48px}
+header{background:var(--gt);border-bottom:3px solid var(--g);padding:28px 0 24px}
+header .wrap{display:flex;align-items:center;gap:30px}
+header .ht{flex:1}
+header img{width:190px;display:block;margin-right:auto}
+h1{font-size:42px;line-height:1.2;color:var(--gdd);margin:0 0 6px;font-weight:800}
+.sub{color:var(--muted);margin:0;font-size:21px}
+nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+nav ul{list-style:none;margin:0;padding:12px 0;display:flex;flex-wrap:wrap;gap:8px 12px}
+nav a{display:inline-block;color:var(--gdd);text-decoration:none;font-weight:700;font-size:19px;padding:8px 18px;border-radius:24px;background:var(--gp);min-height:44px;line-height:28px}
+nav a:hover{background:#dcebcb}
+main{padding:10px 0 30px}
+section{padding-top:20px;margin-bottom:10px}
+h2{font-size:34px;color:var(--gdd);margin:30px 0 12px;font-weight:800;border-bottom:2px solid var(--gp);padding-bottom:8px}
+h3{font-size:26px;color:var(--ink);margin:30px 0 8px;font-weight:800}
+p{margin:10px 0}
+ol,ul{padding-right:28px;margin:10px 0}
+li{margin:8px 0}
+.ltr{direction:ltr;unicode-bidi:isolate;font-family:Consolas,monospace;font-size:19px;background:#f4f6f8;border:1px solid #e3e8ee;border-radius:4px;padding:2px 10px;display:inline-block}
+.en{direction:ltr;unicode-bidi:isolate}
+.free{background:#eef6ff;border:1px solid #cddff3;border-right:7px solid #3b7bbf;border-radius:10px;padding:16px 22px;margin:20px 0;font-size:21px}
+.dl{display:inline-block;background:var(--gdd);color:#fff;text-decoration:none;font-weight:800;font-size:22px;border-radius:30px;padding:12px 30px;min-height:48px}
+.dl:hover{background:#2f5414}
+.ex{border:1.5px solid var(--line);border-right:7px solid var(--g);border-radius:12px;padding:6px 22px 16px;margin:18px 0;background:#fff}
+.ex h3{margin-top:14px}
+.ex[id],section[id]{scroll-margin-top:84px}
+.meta{color:var(--muted);font-size:19px;margin:4px 0}
+.copy{background:var(--gt);border:1.5px solid var(--line);border-radius:10px;padding:14px 18px;margin:12px 0}
+.copy label{display:block;font-size:17px;font-weight:700;color:var(--gdd);margin-bottom:8px}
+.copy textarea{width:100%;font-family:'Heebo',Arial,sans-serif;font-size:21px;line-height:1.75;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:14px 16px;resize:vertical;direction:rtl;overflow:hidden;min-height:60px}
+.copy .btns{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.cbtn,.rbtn{font-family:inherit;font-size:18px;font-weight:700;border:0;border-radius:22px;padding:8px 22px;min-height:44px;cursor:pointer}
+.cbtn{color:#fff;background:var(--gdd)}
+.cbtn:hover{background:#2f5414}
+.cbtn.done{background:var(--red)}
+.rbtn{color:var(--gdd);background:#fff;border:1.5px solid var(--g)}
+.ok{color:var(--gdd);font-weight:700}
+.bonus{color:#6a3d8a}
+.tip{background:#fff8e6;border:1px solid #f0dfae;border-right:7px solid #d4a017;border-radius:10px;padding:14px 20px;margin:14px 0}
+.warn{background:#fbf1f1;border:1px solid #efd3d3;border-right:7px solid var(--red);border-radius:10px;padding:14px 20px;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:20px}
+th{background:var(--gdd);color:#fff;text-align:right;padding:12px 14px}
+td{border-bottom:1px solid var(--line);padding:12px 14px;vertical-align:top}
+.table-scroll-wrapper{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+footer{background:var(--gt);border-top:3px solid var(--g);padding:26px 0 44px;margin-top:34px}
+.accessibility-statement{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1.2rem 1.6rem;max-width:900px;margin:0 auto}
+.accessibility-statement h2{font-size:24px;margin-top:0}
+#live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@media (max-width:1024px){ body{font-size:19px} .wrap{padding:0 28px} h1{font-size:34px} h2{font-size:29px} .grid2{grid-template-columns:1fr} }
+@media (max-width:768px){ nav{position:static} body{font-size:18px} h1{font-size:28px} h2{font-size:25px} h3{font-size:22px} header img{width:130px} .copy textarea{font-size:18px} }
+@media (max-width:480px){ .wrap{padding:0 14px} header .wrap{flex-direction:column-reverse;align-items:flex-start;gap:10px} header img{margin-right:0} h1{font-size:24px} nav a{font-size:16px;padding:8px 12px} .ex{padding:4px 14px 12px} }
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+
+<header>
+  <div class="wrap">
+    <div class="ht">
+      <h1>הנחיות לתרגול: קלוד קוד</h1>
+      <p class="sub">סדנה לצוות ההדרכה, פסג"ה בת ים &middot; מפגש 1 מתוך 4: יום שלישי, 24.11.2026</p>
+    </div>
+    <img src="logo.png" alt="תום הגלעדי - הלוגו">
+  </div>
+</header>
+
+<nav aria-label="תוכן הדף">
+  <div class="wrap">
+    <ul>
+      <li><a href="#start">לפני שמתחילים</a></li>
+      <li><a href="#warmup">תרגול 1: חימום</a></li>
+      <li><a href="#tool">תרגול 2: כלי ראשון</a></li>
+      <li><a href="#alt">חלופות</a></li>
+      <li><a href="#project">תרגול 3: לאן נוסעות</a></li>
+      <li><a href="#ask">איך מבקשים</a></li>
+      <li><a href="#trouble">כשמשהו לא עובד</a></li>
+      <li><a href="#privacy">פרטיות</a></li>
+      <li><a href="#next">עד 1.12</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main-content">
+<div class="wrap">
+
+<p class="free"><b>חשוב לדעת:</b> כל הבקשות כאן הן הצעות. אפשר להשתמש בהן כמו שהן, לערוך אותן כאן בתיבה לפני ההעתקה, או לכתוב משהו אחר לגמרי. הכפתור "החזרת הנוסח המקורי" מחזיר את הטקסט שהיה.</p>
+
+<section id="start" aria-labelledby="h-start">
+  <h2 id="h-start">לפני שמתחילים</h2>
+  <p><a class="dl" href="claude-code-kit-pisga.zip" download>הורדת ערכת התרגול</a></p>
+  <ol>
+    <li><b>חלצו את הקובץ שהורד.</b> בחלונות: קליק ימני על הקובץ, ואז "חלץ הכל". כדאי לחלץ לשולחן העבודה.</li>
+    <li><b>פתחו את אפליקציית קלוד</b>, ולחצו על
+      <span class="en">Code</span>
+      . לידה יכול להופיע
+      <span class="en">Claude</span>
+      , או
+      <span class="en">Chat</span>
+      ו-
+      <span class="en">Cowork</span>
+      . זה תלוי בחשבון, ושתי הצורות תקינות.</li>
+    <li><b>פתחו סשן חדש</b> בכפתור
+      <span class="en">New session</span>
+      , ובחרו את התיקייה "ערכת תרגול - קלוד קוד - פסגה בת ים".</li>
+    <li><b>מודל:</b>
+      <span class="en">Opus 5.5</span>
+      , במאמץ בינוני
+      (<span class="en">Medium</span>).</li>
+    <li><b>ההוכחה שהכול עובד:</b> כתבו "שלום, מה יש בתיקייה הזו?". מופיעה תשובה? מצוין.</li>
+  </ol>
+  <p class="tip"><b>בערכה הכול בדוי:</b> בתי הספר, השמות והשיבוצים. אפשר לנסות בלי חשש.</p>
+</section>
+
+<section id="warmup" aria-labelledby="h-warmup">
+  <h2 id="h-warmup">תרגול 1: חימום - מה יש בתיקייה?</h2>
+  <p class="meta">התיקייה: כל הערכה. התרגול לא משנה שום קובץ.</p>
+  <div class="copy">
+    <label for="t-w1">אפשר לערוך כאן לפני ההעתקה</label>
+<textarea id="t-w1" rows="3">עבור על התיקייה הזו ועל כל תיקיות המשנה שלה, והכן לי טבלה: שם הקובץ, מה יש בו בשורה אחת, ולמה הוא יכול לשמש. אל תשנה שום קובץ.</textarea>
+    <div class="btns"><button type="button" class="cbtn" data-copy="t-w1">העתק</button><button type="button" class="rbtn" data-reset="t-w1">החזרת הנוסח המקורי</button></div>
+  </div>
+  <p>ואז:</p>
+  <div class="copy">
+    <label for="t-w2">אפשר לערוך כאן לפני ההעתקה</label>
+<textarea id="t-w2" rows="1">פתח את קובץ השיבוצים, וספר לי במשפט אחד מה יש בכל גיליון.</textarea>
+    <div class="btns"><button type="button" class="cbtn" data-copy="t-w2">העתק</button><button type="button" class="rbtn" data-reset="t-w2">החזרת הנוסח המקורי</button></div>
+  </div>
+  <p class="ok">הצלחתן אם: מופיעה טבלה עם שורה לכל קובץ, ומשפט על כל אחד מחמשת בתי הספר.</p>
+  <p class="bonus"><b>בונוס:</b> "איזה בית ספר הכי עמוס, ובאיזה יום?"</p>
+</section>
+
+<section id="tool" aria-labelledby="h-tool">
+  <h2 id="h-tool">תרגול 2: כלי ראשון - כל בית ספר רואה רק את שלו</h2>
+  <p>בזוגות. בקובץ השיבוצים יש גיליון לכל בית ספר. המטרה: דף נפרד לכל בית ספר, ודף ראשי עם קישורים.</p>
+  <ol>
+    <li>עברו למצב
+      <span class="en">Plan</span>
+      (בשורה שמתחת לתיבה, או
+      <span class="en">Ctrl+Shift+M</span>
+      ), והדביקו:</li>
+  </ol>
+  <div class="copy">
+    <label for="t-2">אפשר לערוך כאן לפני ההעתקה</label>
+<textarea id="t-2" rows="3">יש כאן קובץ שיבוצים של מדריכות בחמישה בתי ספר. אני רוצה דף נפרד לכל בית ספר, שמראה רק את השיבוצים שלו, ודף ראשי עם קישורים. אל תשנה את קובץ האקסל. קודם תכנן, ותראה לי.</textarea>
+    <div class="btns"><button type="button" class="cbtn" data-copy="t-2">העתק</button><button type="button" class="rbtn" data-reset="t-2">החזרת הנוסח המקורי</button></div>
+  </div>
+  <ol start="2">
+    <li>קראו את התוכנית. לא מתאים? תקנו במילים. מתאים? אשרו.</li>
+    <li>פתחו את הדפים (לחיצה כפולה על הקובץ בתיקייה), ובדקו: <b>בית ספר א' רואה רק את שלו?</b></li>
+  </ol>
+  <p class="ok">הצלחתן אם: יש דף לכל אחד מחמשת בתי הספר, כל דף מראה רק את השיבוצים שלו, ויש דף ראשי עם קישורים.</p>
+  <p class="bonus"><b>בונוס:</b></p>
+  <div class="copy">
+    <label for="t-2b">אפשר לערוך כאן לפני ההעתקה</label>
+<textarea id="t-2b" rows="2">הוסף לכל דף כפתור הדפסה, וצבע כל שורה לפי הסטטוס: פעיל, בתכנון, הושלם, נדחה.</textarea>
+    <div class="btns"><button type="button" class="cbtn" data-copy="t-2b">העתק</button><button type="button" class="rbtn" data-reset="t-2b">החזרת הנוסח המקורי</button></div>
+  </div>
+  <p class="warn"><b>שימו לב:</b> אם האפליקציה מציגה את הדף בתוכה, היא עשויה לשאול לפני שהיא טוענת תוכן מהרשת. זה תקין.</p>
+</section>
+
+<section id="alt" aria-labelledby="h-alt">
+  <h2 id="h-alt">חלופות, למי שסיימה מהר</h2>
+
+  <div class="ex">
+    <h3>לסדר תיקייה מבולגנת</h3>
+    <p>15 קבצים עם שמות חסרי משמעות. קודם קלוד מציע סדר, ורק אחרי האישור שלכן הוא מבצע. התחילו במצב
+      <span class="en">Plan</span>
+      .</p>
+    <p class="meta">התיקייה: "תיקייה מבולגנת".</p>
+  <div class="copy">
+    <label for="t-a1">אפשר לערוך כאן לפני ההעתקה</label>
+<textarea id="t-a1" rows="4">בתיקייה הזו יש קבצים עם שמות לא ברורים. קרא את כולם, והצע מבנה של תיקיות לפי נושא ושם חדש וברור לכל קובץ. הצג קודם את ההצעה כטבלה (שם ישן, שם חדש, תיקייה), ואל תשנה כלום עד שאאשר. אחרי הביצוע, שמור קובץ בשם "מה עשיתי" עם כל השינויים.</textarea>
+    <div class="btns"><button type="button" class="cbtn" data-copy="t-a1">העתק</button><button type="button" class="rbtn" data-reset="t-a1">החזרת הנוסח המקורי</button></div>
+  </div>
+    <p class="warn"><b>שימו לב:</b> כאן החזרה אחורה הרגילה לא תעבוד, כי העברת קבצים בין תיקיות היא הרצת פקודה. לכן ביקשנו את הקובץ "מה עשיתי".</p>
+  </div>
+
+  <div class="ex">
+    <h3>למצוא טעויות בטבלה</h3>
+    <p>טבלה של 30 שורות, בלי שמות: רק מספרים מזהים בדויים. יש בה טעויות שתולות.</p>
+    <p class="meta">התיקייה: "טבלה לבדיקה".</p>
+  <div class="copy">
+    <label for="t-a2">אפשר לערוך כאן לפני ההעתקה</label>
+<textarea id="t-a2" rows="3">בדוק את הטבלה: האם יש שגיאות או נתונים חשודים? פרט כל בעיה, ובאיזו שורה היא. אחר כך בנה דוח קצר: ממוצע לכל עמודה, גרף אחד, ושלוש תובנות. דף אינטרנט אחד בעברית.</textarea>
+    <div class="btns"><button type="button" class="cbtn" data-copy="t-a2">העתק</button><button type="button" class="rbtn" data-reset="t-a2">החזרת הנוסח המקורי</button></div>
+  </div>
+    <p class="ok">הצלחתן אם: הוא מצא את הטעויות, ויש גרף. ובדקו בעצמכן חישוב אחד.</p>
+  </div>
+</section>
+
+<section id="project" aria-labelledby="h-project">
+  <h2 id="h-project">תרגול 3: לאן אתן נוסעות?</h2>
+  <p>כל זוג בוחר <b>כאב מנהלתי אחד</b> לשלושת המפגשים הבאים. למשל: אקסל השיבוצים והבגרויות, הלוח החודשי למנהלות ולמפקחות, או כל משימה שחוזרת כל חודש ולוקחת שעות.</p>
+  <p class="meta">פתחו סשן חדש על התיקייה "הפרויקט שלנו" שבערכה, והדביקו:</p>
+  <div class="copy">
+    <label for="t-3">אפשר לערוך כאן לפני ההעתקה</label>
+<textarea id="t-3" rows="3">ראיין אותנו. שאל שאלה אחת בכל פעם על התהליך שאנחנו רוצות לשפר: מה עושים היום, מי משתמש בתוצר, ומה יהיה טוב. בסוף כתוב קובץ CLAUDE.md בתיקייה הזו, שמתאר את הפרויקט שלנו.</textarea>
+    <div class="btns"><button type="button" class="cbtn" data-copy="t-3">העתק</button><button type="button" class="rbtn" data-reset="t-3">החזרת הנוסח המקורי</button></div>
+  </div>
+  <p>ואז פתחו סשן חדש על אותה תיקייה, ושאלו:</p>
+  <div class="copy">
+    <label for="t-3b">אפשר לערוך כאן לפני ההעתקה</label>
+<textarea id="t-3b" rows="1">מה אתה יודע על הפרויקט שלנו?</textarea>
+    <div class="btns"><button type="button" class="cbtn" data-copy="t-3b">העתק</button><button type="button" class="rbtn" data-reset="t-3b">החזרת הנוסח המקורי</button></div>
+  </div>
+  <p class="ok">הצלחתן אם: בסשן החדש קלוד מתאר את הפרויקט שלכן, בלי שסיפרתן לו שוב.</p>
+</section>
+
+<section id="ask" aria-labelledby="h-ask">
+  <h2 id="h-ask">איך מבקשים מסוכן</h2>
+  <p>ארבעה חלקים: <b>מטרה</b> (מה רוצים שיהיה בסוף), <b>הקשר</b> (על אילו קבצים, ובשביל מי), <b>גבולות</b> (במה לא לגעת), ו<b>מתי זה מוכן</b>. ותמיד: התחילו ב-<span class="en">Plan</span>, ובקשו שישאל שאלות.</p>
+  <div class="copy">
+    <label for="t-4">השלימו כאן את החלקים החסרים, ואז העתיקו</label>
+<textarea id="t-4" rows="6">אני רוצה ש[מה רוצים שיהיה בסוף].
+הקבצים שרלוונטיים: [על אילו קבצים לעבוד].
+אל תשנה: [מה אסור לגעת בו].
+זה מוכן כש[איך נראה סיום טוב].
+לפני שאתה מתחיל, שאל אותי שאלות.</textarea>
+    <div class="btns"><button type="button" class="cbtn" data-copy="t-4">העתק</button><button type="button" class="rbtn" data-reset="t-4">החזרת הנוסח המקורי</button></div>
+  </div>
+  <p class="tip"><b>תהליך בחמישה צעדים:</b> מתכננות ב-<span class="en">Plan</span> &middot; קוראות ומתקנות במילים &middot; מאשרות &middot; על דוגמה קטנה קודם (שני בתי ספר, לא שלושים) &middot; עובד? מרחיבות, ושומרות את מה שלמדנו בקובץ <span class="en">CLAUDE.md</span>.</p>
+</section>
+
+<section id="trouble" aria-labelledby="h-trouble">
+  <h2 id="h-trouble">כשמשהו לא עובד</h2>
+  <table>
+    <thead><tr><th scope="col">מה קורה</th><th scope="col">מה עושים</th></tr></thead>
+    <tbody>
+      <tr><td>אין <span class="en">Code</span>, או מופיע "שדרוג"</td><td>המנוי לא פעיל, או שנכנסתן עם חשבון אחר. יציאה וכניסה עם החשבון של הצוות.</td></tr>
+      <tr><td>הכניסה מבקשת קוד</td><td>זו הכניסה הרגילה: הקוד מגיע למייל.</td></tr>
+      <tr><td>הוא לא רואה את הקובץ</td><td>בדקו שבחרתן את התיקייה הנכונה.</td></tr>
+      <tr><td>קופצת שאלת אישור</td><td>קראו מה הוא מבקש לעשות, ואשרו או סרבו.</td></tr>
+      <tr><td>הוא הלך לכיוון לא נכון</td><td>עצרו ב-<span class="en">Esc</span>, תקנו במילים, או חזרו אחורה מהתפריט של ההודעה.</td></tr>
+      <tr><td>הגעתן למגבלת השימוש</td><td>חכו שהחלון יתחדש. בכרטיס שמופיע אפשר לסמן המשך אוטומטי כשהמגבלה מתחדשת.</td></tr>
+    </tbody>
+  </table>
+  <p>ועוד: הרימו יד, ואני מגיע.</p>
+</section>
+
+<section id="privacy" aria-labelledby="h-privacy">
+  <h2 id="h-privacy">פרטיות: מה הכלי רואה, ומה לא מכניסים</h2>
+  <ul>
+    <li><b>רואה:</b> את התיקייה שבחרתן. כדי לצאת ממנה הוא צריך אישור. אבל פקודה שאישרתן יכולה לגעת בכל מה שהמשתמש שלכן במחשב נוגע בו.</li>
+    <li><b>נשלח לאנתרופיק:</b> מה שקלוד קורא, לפי הצורך. מוצפן בדרך.</li>
+    <li><b>בחשבון צוות, כמו שלכן:</b> המידע לא משמש לאימון המודלים, ונשמר 30 יום.</li>
+    <li class="warn"><b>אל תכניסו:</b> פרטים מזהים של תלמידים ומורים (שמות עם ציונים, מספרי זהות), מידע רפואי, סיסמאות ומסמכים חסויים. אפשר להחליף שמות במספרים.</li>
+  </ul>
+</section>
+
+<section id="next" aria-labelledby="h-next">
+  <h2 id="h-next">מה לוקחות, ומה עד 1.12</h2>
+  <ol>
+    <li>תיקייה אחת לכל נושא.</li>
+    <li>קודם <span class="en">Plan</span>, אחר כך ביצוע.</li>
+    <li>דוגמה קטנה קודם.</li>
+    <li><span class="en">Esc</span> וחזרה אחורה - אבל לא על הכול.</li>
+    <li>בלי פרטים מזהים.</li>
+  </ol>
+  <p class="tip"><b>עד 1.12:</b> הכינו את הקובץ האמיתי של הכאב שבחרתן, בלי שמות של תלמידים ומורים. <b>בפעם הבאה:</b> סקילים, מחברים, והאפליקציה שלכן.</p>
+</section>
+
+<section id="contact" aria-labelledby="h-contact">
+  <h2 id="h-contact">יצירת קשר</h2>
+  <p>תום הגלעדי &middot;
+    <a href="mailto:tomhagiladi@gmail.com" class="en">tomhagiladi@gmail.com</a>
+    &middot; <a href="https://www.tomhagiladi.com/">האתר של תום הגלעדי</a></p>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="accessibility-statement" id="accessibility">
+      <h2>הצהרת נגישות</h2>
+      <p>אתר זה עומד בדרישות תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג-2013, ותקן ישראלי ת"י 5568 המבוסס על הנחיות
+      <span lang="en" dir="ltr">WCAG 2.0</span>
+      ברמה
+      <span lang="en" dir="ltr">AA</span>
+      .</p>
+      <p>אם נתקלתם בבעיית נגישות באתר, אנא פנו אלינו ונשמח לסייע:</p>
+      <p><strong>רכז נגישות:</strong> תום הגלעדי<br>
+      <strong>אימייל:</strong>
+      <a href="mailto:tomhagiladi@gmail.com" lang="en" dir="ltr">tomhagiladi@gmail.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<div id="live" aria-live="polite" data-copy="העתק" data-copied="הועתק" data-live-copied="הטקסט הועתק" data-live-reset="הנוסח המקורי הוחזר" data-scroll="טבלה נגללת"></div>
+<script>
+var live=document.getElementById('live'), L=live.dataset;
+document.querySelectorAll('table').forEach(function(table){
+  var w=document.createElement('div');
+  w.className='table-scroll-wrapper'; w.setAttribute('tabindex','0'); w.setAttribute('role','region'); w.setAttribute('aria-label',L.scroll);
+  table.parentNode.insertBefore(w,table); w.appendChild(table);
+});
+// editable prompts: grow with their text, remember the original for reset
+function grow(t){ t.style.height='auto'; t.style.height=(t.scrollHeight+4)+'px'; }
+document.querySelectorAll('.copy textarea').forEach(function(t){
+  t.dataset.original=t.value; grow(t);
+  t.addEventListener('input',function(){ grow(t); });
+});
+addEventListener('resize',function(){ document.querySelectorAll('.copy textarea').forEach(grow); });
+function copyText(text,btn){
+  function ok(){ btn.textContent=L.copied; btn.classList.add('done'); live.textContent=L.liveCopied; setTimeout(function(){btn.textContent=L.copy;btn.classList.remove('done');},1800); }
+  function fallback(){ var ta=document.createElement('textarea'); ta.value=text; ta.setAttribute('readonly',''); ta.style.position='absolute'; ta.style.right='-9999px'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); ok();}catch(e){} document.body.removeChild(ta); }
+  if(navigator.clipboard&&window.isSecureContext){ navigator.clipboard.writeText(text).then(ok,fallback); } else { fallback(); }
+}
+document.querySelectorAll('.cbtn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var el=document.getElementById(btn.getAttribute('data-copy'));
+    copyText(el.tagName==='TEXTAREA' ? el.value.trim() : el.innerText.trim(), btn);
+  });
+});
+document.querySelectorAll('.rbtn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var t=document.getElementById(btn.getAttribute('data-reset'));
+    t.value=t.dataset.original; grow(t); live.textContent=L.liveReset;
+  });
+});
+</script>
+</body>
+</html>
