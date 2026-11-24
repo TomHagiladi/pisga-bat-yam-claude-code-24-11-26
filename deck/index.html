@@ -208,6 +208,17 @@ html,body{height:100%;background:#2E2D2A;overflow:hidden;font-family:'Heebo',Ari
 .tagrow{display:flex;gap:12px;margin-bottom:12px}
 .tagrow span{font-size:20px;font-weight:800;border-radius:20px;padding:4px 16px;color:#fff}
 .qrside{flex:0 0 250px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.cmpt th{font-size:22px;padding:10px 16px}
+.cmpt td{font-size:22px;padding:10px 16px;line-height:1.4}
+.cmpt td:first-child{font-weight:700;color:var(--gdd);white-space:nowrap}
+.cmpt th.team{background:var(--gdd)}
+.cmpt td.team{background:#EAF4E0 !important;font-weight:500}
+.sens{display:flex;gap:20px;align-items:stretch}
+.sens .card{padding:14px 20px}
+.sens .card h4{font-size:26px;margin-bottom:6px}
+.sens ul.dot li{font-size:21px;margin:7px 0;line-height:1.4;padding-right:24px}
+.sens ul.dot li:before{top:12px}
+.moeq{margin-top:12px;background:var(--gt);border-right:7px solid var(--gd);border-radius:10px;padding:10px 20px;font-size:22px;line-height:1.45}
 .qrside img{width:230px;border:1.5px solid var(--line);border-radius:12px;padding:8px;background:#fff}
 .qrside .u{direction:ltr;font-size:14px;color:var(--muted);text-align:center;line-height:1.3}
 .qrside .w{background:var(--gd);color:#fff;border-radius:10px;padding:6px 14px;font-size:22px;font-weight:800;text-align:center;width:100%}
@@ -350,6 +361,50 @@ html,body{height:100%;background:#2E2D2A;overflow:hidden;font-family:'Heebo',Ari
     </div>
   </div>
   <p class="line-end f" style="font-size:28px">המודל <span class="r">חושב</span>. המעטפת <span class="r">פועלת</span>. אתן <span class="r">מחליטות</span> מה מותר.</p>
+</section>
+
+<!-- 6a פרטי מול צוות -->
+<section class="slide">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag on">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>אבטחה ופרטיות: מנוי פרטי מול מנוי צוות</h2>
+  <table class="cmpt">
+    <thead><tr><th style="width:20%"></th><th style="width:40%">מנוי פרטי (<span class="en">Pro, Max</span>)</th><th class="team">מנוי צוות (<span class="en">Team</span>) - שלכן</th></tr></thead>
+    <tbody>
+      <tr class="f"><td>התנאים</td><td>תנאי שימוש לצרכן</td><td class="team">תנאים מסחריים, של ארגון</td></tr>
+      <tr class="f"><td>אימון המודלים</td><td>לפי בחירה: מתג בהגדרות הפרטיות</td><td class="team"><span class="r">לא משמש לאימון</span></td></tr>
+      <tr class="f"><td>כמה זמן נשמר</td><td>אימון כבוי: 30 יום. אימון דלוק: עד 5 שנים</td><td class="team">30 יום</td></tr>
+      <tr class="f"><td>מי מנהל</td><td>אתן, לבד</td><td class="team">בעלי החשבון בארגון: מי בפנים, ואילו יכולות פתוחות</td></tr>
+      <tr class="f"><td>קלוד קוד</td><td>מפרו ומעלה</td><td class="team">כלול בכל מושב</td></tr>
+    </tbody>
+  </table>
+  <p class="line-end f" style="font-size:26px;margin-top:16px">"לא לאימון" הוא <span class="r">לא</span> "לא נשלח". גם בחשבון צוות, מה שקלוד קורא יוצא מהמחשב.</p>
+  <p class="small" style="margin-top:auto">מקורות: עמוד השימוש בנתונים בתיעוד של אנתרופיק, מרכז העזרה ודף המחירים. נבדק ב-23.11.2026.</p>
+</section>
+
+<!-- 6b מידע רגיש -->
+<section class="slide" style="justify-content:center">
+  <div class="agenda"><span class="ag">פתיחה</span><span class="ag">סוכן והממשק</span><span class="ag on">שליטה וביטחון</span><span class="ag">איך עובדים</span><span class="ag">תרגול</span></div>
+  <h2>ומה עם מידע רגיש?</h2>
+  <div class="sens">
+    <div class="card f" style="flex:1">
+      <h4>מה קורה בפועל</h4>
+      <ul class="dot">
+        <li>קלוד קורא קבצים <b>לפי הצורך</b>, לא את כל התיקייה בבת אחת. מה שהוא קורא נשלח לאנתרופיק, מוצפן בדרך.</li>
+        <li>הוא רואה את התיקייה שבחרתן. יציאה ממנה דורשת אישור. אבל <span class="r">פקודה שאישרתן</span> יכולה לגעת בכל מה שהמשתמש שלכן במחשב נוגע בו.</li>
+        <li>קובץ או אתר ממקור חיצוני יכולים להכיל <b>הוראות מוסתרות</b> לקלוד.</li>
+      </ul>
+    </div>
+    <div class="card red f" style="flex:1">
+      <h4>מה עושים</h4>
+      <ul class="dot">
+        <li>תיקייה נפרדת לכל פרויקט, <b>רק עם הקבצים שצריך.</b></li>
+        <li>בלי פרטים מזהים: <b>שמות הופכים למספרים</b>, והמפתח נשאר אצלכן.</li>
+        <li>בלי סיסמאות, מספרי זהות ומידע רפואי - לא בקבצים ולא בצ'אט.</li>
+        <li>קוראות מה קלוד מבקש לעשות, <span class="r">לפני</span> שמאשרות.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="moeq f"><b>הנחיות משרד החינוך (ינואר 2026):</b> "אין לשתף או למסור כל מידע אישי או מידע רגיש או מידע מזוהה".</div>
 </section>
 
 <!-- 7 מפת המסך -->
